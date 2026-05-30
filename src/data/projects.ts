@@ -24,8 +24,7 @@ export const PROJECTS: Project[] = [
     description:
       "Bachelor's thesis (UZH). Tests whether gains in multi-agent LLM reasoning come from genuinely separate model instances or just role-based perspective diversity. It compares two DeepSeek-V3 instances against a single model alternating roles, across Debate / Cooperative / Teacher-Student strategies on AIME, GPQA Diamond, and LiveBench Reasoning. Model separation helped most in critique-oriented dialogue; cooperative settings didn't require true independence.",
     tags: ["LLMs", "multi-agent", "reasoning", "thesis"],
-    // TODO: link the thesis PDF once you drop it in public/papers/.
-    links: [],
+    links: [{ label: "Thesis (PDF)", href: "/papers/two-heads-or-one-thesis.pdf" }],
     year: "2025",
     featured: true,
   },
@@ -34,7 +33,7 @@ export const PROJECTS: Project[] = [
     description:
       "Classifies overlapping speech in spontaneous multi-party conversation (AMI Meeting Corpus) as cooperative (e.g. backchannels) or competitive (e.g. interruptions). Combines Wav2Vec audio embeddings with lexical sentence embeddings from noisy ASR, trained via a weakly-supervised labeling pipeline (heuristics + LLM-assisted annotation). Adding lexical features improved performance, though competitive overlaps stayed hard.",
     tags: ["speech", "ASR", "classification"],
-    links: [],
+    links: [{ label: "Paper (PDF)", href: "/papers/lexicon-meets-prosody.pdf" }],
     year: "2025",
     featured: true,
   },
