@@ -1,0 +1,91 @@
+---
+interface Link {
+  label: string;
+  href: string;
+}
+interface Props {
+  title: string;
+  description: string;
+  tags?: string[];
+  links?: Link[];
+  year?: string;
+}
+const { title, description, tags = [], links = [], year } = Astro.props;
+---
+
+<article class="project-card card">
+  <div class="head">
+    <h3 class="title">{title}</h3>
+    {year && <span class="year">{year}</span>}
+  </div>
+  <p class="desc">{description}</p>
+  {
+    tags.length > 0 && (
+      <div class="tags">
+        {tags.map((t) => (
+          <span class="tag">{t}</span>
+        ))}
+      </div>
+    )
+  }
+  {
+    links.length > 0 && (
+      <div class="links">
+        {links.map((l) => (
+          <a class="link-slide" href={l.href} rel="noopener">
+            {l.label} <span aria-hidden="true">↗</span>
+          </a>
+        ))}
+      </div>
+    )
+  }
+</article>
+
+<style>
+  .project-card {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  .head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+  .title {
+    font-size: 1.15rem;
+    font-weight: 600;
+    margin: 0;
+  }
+  .year {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--muted);
+  }
+  .desc {
+    color: var(--muted);
+    font-size: 0.93rem;
+    margin: 0.6rem 0 0;
+    flex: 1;
+  }
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-top: 1rem;
+  }
+  .links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 1.1rem;
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+  }
+  .links a {
+    color: var(--accent);
+    text-decoration: none;
+  }
+</style>

@@ -1,0 +1,52 @@
+---
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
+
+interface Props {
+  src: ImageMetadata;
+  alt: string;
+  caption?: string;
+  /** small mono label, e.g. "Fig 1" */
+  label?: string;
+}
+const { src, alt, caption, label } = Astro.props;
+---
+
+<figure class="figure">
+  <Image src={src} alt={alt} class="img" loading="lazy" />
+  {
+    (caption || label) && (
+      <figcaption class="cap">
+        {label && <span class="label">{label}</span>}
+        {caption}
+      </figcaption>
+    )
+  }
+</figure>
+
+<style>
+  .figure {
+    margin: 2.25rem 0;
+  }
+  .img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border: 1px solid var(--border);
+    background: var(--surface);
+  }
+  .cap {
+    margin-top: 0.65rem;
+    font-size: 0.84rem;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+  .label {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-right: 0.5rem;
+  }
+</style>

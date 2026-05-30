@@ -1,0 +1,167 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { PUBLICATIONS } from "../data/publications";
+import { RESEARCH_INTERESTS } from "../data/profile";
+---
+
+<BaseLayout title="Research" description="Publications, posters, and research interests.">
+  <header class="page-head">
+    <p class="eyebrow">Research</p>
+    <h1>Publications & talks</h1>
+    <p class="sub">
+      Mostly on the interpretability of language models from a linguistics-oriented
+      perspective. Newest first.
+    </p>
+  </header>
+
+  <section class="sec">
+    <ol class="pubs">
+      {
+        PUBLICATIONS.map((p) => (
+          <li class="pub">
+            <div class="pub-meta">
+              <span class="pub-date">{p.date}</span>
+              {p.status && <span class="status">{p.status}</span>}
+            </div>
+            <div class="pub-body">
+              <h2 class="pub-title">{p.title}</h2>
+              <p class="pub-venue">{p.venue}</p>
+              <p class="pub-desc">{p.description}</p>
+              {p.links && p.links.length > 0 && (
+                <div class="pub-links">
+                  {p.links.map((l) => (
+                    <a class="link-slide" href={l.href} rel="noopener">
+                      {l.label} <span aria-hidden="true">↗</span>
+                    </a>
+                  ))}
+                </div>
+              )}
+            </div>
+          </li>
+        ))
+      }
+    </ol>
+  </section>
+
+  <section class="sec">
+    <h3 class="sec-label">Research interests</h3>
+    <div class="tags">
+      {RESEARCH_INTERESTS.map((t) => <span class="tag">{t}</span>)}
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .page-head {
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 1.25rem;
+    margin-bottom: 2.5rem;
+  }
+  .page-head h1 {
+    font-size: clamp(2rem, 5vw, 2.8rem);
+    font-weight: 600;
+    margin: 0.5rem 0 0;
+  }
+  .sub {
+    color: var(--muted);
+    max-width: 54ch;
+    margin: 1rem 0 0;
+  }
+  .sec {
+    margin-top: 1rem;
+  }
+  .sec + .sec {
+    margin-top: 3rem;
+  }
+  .pubs {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 1.75rem;
+  }
+  .pub {
+    display: grid;
+    grid-template-columns: 9rem 1fr;
+    gap: 1.5rem;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 1.75rem;
+  }
+  .pub:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+  .pub-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    align-items: flex-start;
+  }
+  .pub-date {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: var(--muted);
+  }
+  .status {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--accent);
+    border: 1px solid var(--accent);
+    padding: 0.05rem 0.4rem;
+  }
+  .pub-title {
+    font-size: 1.15rem;
+    font-weight: 600;
+    margin: 0;
+    line-height: 1.3;
+  }
+  .pub-venue {
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+    color: var(--muted);
+    margin: 0.4rem 0 0;
+  }
+  .pub-desc {
+    color: var(--muted);
+    margin: 0.7rem 0 0;
+  }
+  .pub-links {
+    display: flex;
+    gap: 1rem;
+    margin-top: 0.9rem;
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+  }
+  .pub-links a {
+    color: var(--accent);
+    text-decoration: none;
+  }
+  .sec-label {
+    font-size: 0.82rem;
+    font-family: var(--font-mono);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    font-weight: 500;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 0.6rem;
+    margin: 0 0 1.25rem;
+  }
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+  @media (max-width: 560px) {
+    .pub {
+      grid-template-columns: 1fr;
+      gap: 0.6rem;
+    }
+    .pub-meta {
+      flex-direction: row;
+      align-items: center;
+    }
+  }
+</style>

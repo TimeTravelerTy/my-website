@@ -1,0 +1,213 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { SITE, SOCIALS, YOUTUBE } from "../config";
+import { BIO, EDUCATION, LANGUAGES, HOBBIES } from "../data/profile";
+---
+
+<BaseLayout title="About" description={`About ${SITE.name}.`}>
+  <header class="page-head">
+    <p class="eyebrow">About</p>
+    <h1>{SITE.name}</h1>
+  </header>
+
+  <div class="about">
+    <div class="body">
+      {BIO.map((p) => <p>{p}</p>)}
+
+      <h2>Education</h2>
+      {
+        EDUCATION.map((ed) => (
+          <div class="edu">
+            <div class="edu-head">
+              <span class="edu-org">{ed.org}</span>
+              {ed.period && <span class="edu-period">{ed.period}</span>}
+            </div>
+            <p class="edu-degree">{ed.degree}</p>
+            {ed.detail && <p class="edu-detail">{ed.detail}</p>}
+            {ed.thesis && (
+              <p class="edu-detail">
+                <span class="thesis-label">Thesis:</span> <em>{ed.thesis}</em>
+              </p>
+            )}
+          </div>
+        ))
+      }
+
+      <h2>Languages</h2>
+      <p>
+        {LANGUAGES.working.map((l, i) => (
+          <>
+            {i > 0 && <span class="dot-sep"> · </span>}
+            {l.lang}
+            {l.note && <span class="lang-note"> ({l.note})</span>}
+          </>
+        ))}
+      </p>
+      <p class="dabble">
+        Plus a bit of {LANGUAGES.learning.join(", ")}.
+      </p>
+
+      <h2>Beyond work</h2>
+      <p>
+        Piano and music: I post some playing on my{" "}
+        <a class="inline-link" href={YOUTUBE} rel="me noopener">YouTube channel</a>.
+        Outside of that, language learning, creative coding, and the broader question
+        of how intelligence shows up across humans, animals, biological systems, and
+        machines. Also history.
+      </p>
+      <p class="reading">
+        <span class="reading-label">Currently reading:</span>{" "}
+        {HOBBIES.currentlyReading}
+      </p>
+    </div>
+
+    <aside class="side">
+      <p class="eyebrow">Elsewhere</p>
+      <ul class="links">
+        {
+          SOCIALS.map((s) => (
+            <li>
+              <a class="link-slide" href={s.href} rel="me noopener">
+                {s.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+      <p class="eyebrow stacked">More</p>
+      <ul class="links">
+        <li><a class="link-slide" href="/research">Research →</a></li>
+        <li><a class="link-slide" href="/projects">Projects →</a></li>
+        <li><a class="link-slide" href="/cv">CV →</a></li>
+      </ul>
+    </aside>
+  </div>
+</BaseLayout>
+
+<style>
+  .page-head {
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 1.25rem;
+    margin-bottom: 2.5rem;
+  }
+  .page-head h1 {
+    font-size: clamp(2rem, 5vw, 2.8rem);
+    font-weight: 600;
+    margin: 0.5rem 0 0;
+  }
+  .about {
+    display: grid;
+    grid-template-columns: 1fr 14rem;
+    gap: 3rem;
+    align-items: start;
+  }
+  .body {
+    font-size: 1.05rem;
+    line-height: 1.75;
+  }
+  .body > p + p {
+    margin-top: 1.15rem;
+  }
+  .body h2 {
+    font-size: 0.82rem;
+    font-family: var(--font-mono);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    margin-top: 2.75rem;
+    margin-bottom: 1rem;
+    font-weight: 500;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 0.6rem;
+  }
+  .edu + .edu {
+    margin-top: 1.5rem;
+  }
+  .edu-head {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    align-items: baseline;
+  }
+  .edu-org {
+    font-weight: 600;
+  }
+  .edu-period {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    color: var(--muted);
+  }
+  .edu-degree {
+    margin: 0.2rem 0 0;
+  }
+  .edu-detail {
+    color: var(--muted);
+    font-size: 0.97rem;
+    margin: 0.35rem 0 0;
+  }
+  .thesis-label {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  .lang-note {
+    color: var(--muted);
+    font-size: 0.95rem;
+  }
+  .dabble {
+    color: var(--muted);
+    margin-top: 0.5rem;
+  }
+  .reading {
+    margin-top: 1.15rem;
+    color: var(--muted);
+  }
+  .reading-label,
+  .thesis-label {
+    color: var(--accent);
+  }
+  .inline-link {
+    color: var(--accent);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  .inline-link:hover {
+    opacity: 0.75;
+  }
+
+  .side {
+    border-left: 1px solid var(--border);
+    padding-left: 1.5rem;
+    position: sticky;
+    top: 5rem;
+  }
+  .side .links {
+    list-style: none;
+    padding: 0;
+    margin: 0.8rem 0 0;
+    display: grid;
+    gap: 0.5rem;
+  }
+  .side a {
+    color: var(--ink);
+    text-decoration: none;
+    font-size: 0.95rem;
+  }
+  .stacked {
+    margin-top: 2rem;
+  }
+  @media (max-width: 720px) {
+    .about {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+    .side {
+      border-left: none;
+      border-top: 1px solid var(--border);
+      padding-left: 0;
+      padding-top: 1.5rem;
+      position: static;
+    }
+  }
+</style>

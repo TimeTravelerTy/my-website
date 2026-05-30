@@ -1,0 +1,260 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { SITE, SOCIALS } from "../config";
+import { EDUCATION, SKILLS, LANGUAGES, RESEARCH_INTERESTS } from "../data/profile";
+import { PUBLICATIONS } from "../data/publications";
+---
+
+<BaseLayout title="CV" description={`Curriculum vitae — ${SITE.name}.`}>
+  <header class="page-head">
+    <div>
+      <p class="eyebrow">Curriculum Vitae</p>
+      <h1>{SITE.name}</h1>
+    </div>
+    <span class="pdf-soon">PDF version coming soon</span>
+  </header>
+
+  <section class="sec">
+    <h2>Education</h2>
+    {
+      EDUCATION.map((ed) => (
+        <div class="entry">
+          <div class="entry-head">
+            <div>
+              <span class="role">{ed.degree}</span>
+              <span class="org">· {ed.org}</span>
+            </div>
+            {ed.period && <span class="period">{ed.period}</span>}
+          </div>
+          {ed.detail && <p class="detail">{ed.detail}</p>}
+          {ed.thesis && (
+            <p class="detail">
+              <span class="k">Thesis:</span> <em>{ed.thesis}</em>
+            </p>
+          )}
+        </div>
+      ))
+    }
+  </section>
+
+  <section class="sec">
+    <div class="sec-head">
+      <h2>Publications</h2>
+      <a class="link-slide more" href="/research">Full list →</a>
+    </div>
+    {
+      PUBLICATIONS.map((p) => (
+        <div class="entry">
+          <div class="entry-head">
+            <div>
+              <span class="role">{p.title}</span>
+            </div>
+            <span class="period">{p.date}</span>
+          </div>
+          <p class="detail">
+            {p.venue}
+            {p.status && <span class="status"> · {p.status}</span>}
+          </p>
+        </div>
+      ))
+    }
+  </section>
+
+  <section class="sec">
+    <h2>Skills & methods</h2>
+    <div class="skills">
+      {
+        SKILLS.map((g) => (
+          <div class="skill-group">
+            <p class="skill-label">{g.label}</p>
+            <div class="tags">
+              {g.items.map((i) => (
+                <span class="tag">{i}</span>
+              ))}
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="sec">
+    <h2>Research interests</h2>
+    <div class="tags">
+      {RESEARCH_INTERESTS.map((t) => <span class="tag">{t}</span>)}
+    </div>
+  </section>
+
+  <section class="sec">
+    <h2>Languages</h2>
+    <p class="langs">
+      {
+        LANGUAGES.working.map((l, i) => (
+          <>
+            {i > 0 && <span> · </span>}
+            {l.lang}
+            {l.note && <span class="muted"> ({l.note})</span>}
+          </>
+        ))
+      }
+    </p>
+    <p class="detail">Plus a bit of {LANGUAGES.learning.join(", ")}.</p>
+  </section>
+
+  <section class="sec">
+    <h2>Links</h2>
+    <ul class="linklist">
+      {
+        SOCIALS.map((s) => (
+          <li>
+            <span class="key">{s.label}</span>
+            <a class="link-slide" href={s.href} rel="me noopener">
+              {s.handle}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+</BaseLayout>
+
+<style>
+  .page-head {
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 1.25rem;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .page-head h1 {
+    font-size: clamp(2rem, 5vw, 2.8rem);
+    font-weight: 600;
+    margin: 0.5rem 0 0;
+  }
+  .pdf-soon {
+    font-family: var(--font-mono);
+    font-size: 0.74rem;
+    color: var(--muted);
+    border: 1px dashed var(--border-strong);
+    padding: 0.45rem 0.8rem;
+  }
+  .sec {
+    margin-top: 2.5rem;
+  }
+  .sec > h2,
+  .sec-head h2 {
+    font-size: 0.82rem;
+    font-family: var(--font-mono);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    font-weight: 500;
+    margin: 0 0 1.25rem;
+  }
+  .sec > h2 {
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 0.6rem;
+  }
+  .sec-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 0.6rem;
+    margin-bottom: 1.25rem;
+  }
+  .sec-head h2 {
+    margin: 0;
+  }
+  .more {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--accent);
+    text-decoration: none;
+  }
+  .entry + .entry {
+    margin-top: 1.5rem;
+  }
+  .entry-head {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    align-items: baseline;
+    flex-wrap: wrap;
+  }
+  .role {
+    font-weight: 600;
+  }
+  .org {
+    color: var(--muted);
+  }
+  .period {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    color: var(--muted);
+    white-space: nowrap;
+  }
+  .detail {
+    color: var(--muted);
+    margin: 0.4rem 0 0;
+  }
+  .k {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--accent);
+  }
+  .status {
+    color: var(--accent);
+  }
+  .skills {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+  .skill-label {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    color: var(--muted);
+    margin: 0 0 0.6rem;
+  }
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+  .langs .muted {
+    color: var(--muted);
+  }
+  .linklist {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 0.5rem;
+  }
+  .linklist li {
+    display: flex;
+    gap: 0.75rem;
+    align-items: baseline;
+  }
+  .key {
+    font-family: var(--font-mono);
+    font-size: 0.74rem;
+    color: var(--muted);
+    min-width: 4.5rem;
+  }
+  .linklist a {
+    color: var(--ink);
+    text-decoration: none;
+  }
+  @media (max-width: 640px) {
+    .skills {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

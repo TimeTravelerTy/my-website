@@ -1,0 +1,58 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ProjectCard from "../components/ProjectCard.astro";
+import { PROJECTS } from "../data/projects";
+---
+
+<BaseLayout title="Projects" description="Things I've built and explored.">
+  <header class="page-head">
+    <p class="eyebrow">Projects</p>
+    <h1>Things I've built</h1>
+    <p class="sub">
+      A mix of research, side projects, and experiments. Some are polished, some
+      are just me chasing a question.
+    </p>
+  </header>
+
+  <div class="grid">
+    {
+      PROJECTS.map((p) => (
+        <ProjectCard
+          title={p.title}
+          description={p.description}
+          tags={p.tags}
+          links={p.links}
+          year={p.year}
+        />
+      ))
+    }
+  </div>
+</BaseLayout>
+
+<style>
+  .page-head {
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 1.25rem;
+    margin-bottom: 2.5rem;
+  }
+  .page-head h1 {
+    font-size: clamp(2rem, 5vw, 2.8rem);
+    font-weight: 600;
+    margin: 0.5rem 0 0;
+  }
+  .sub {
+    color: var(--muted);
+    max-width: 50ch;
+    margin: 1rem 0 0;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+  @media (max-width: 720px) {
+    .grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

@@ -1,0 +1,69 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout title="Not found" description="Page not found.">
+  <section class="nf">
+    <p class="code">404</p>
+    <h1>This page wandered off.</h1>
+    <p class="sub">The thing you're looking for isn't here. Maybe it moved, maybe it never existed.</p>
+    <div class="cta">
+      <a href="/" class="btn btn-primary">Back home</a>
+      <a href="/blog" class="btn">Read the blog</a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .nf {
+    padding: 4rem 0;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .code {
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    letter-spacing: 0.2em;
+    color: var(--accent);
+  }
+  .nf h1 {
+    font-size: clamp(2rem, 6vw, 3rem);
+    font-weight: 600;
+    margin: 0.75rem 0 0;
+  }
+  .sub {
+    color: var(--muted);
+    margin: 1rem 0 0;
+    max-width: 46ch;
+  }
+  .cta {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    border: 1px solid var(--border-strong);
+    padding: 0.6rem 1.1rem;
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: var(--ink);
+    text-decoration: none;
+  }
+  .btn:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    transform: translateY(-2px);
+  }
+  .btn-primary {
+    background: var(--accent);
+    color: var(--accent-ink);
+    border-color: var(--accent);
+  }
+  .btn-primary:hover {
+    color: var(--accent-ink);
+    opacity: 0.9;
+  }
+</style>

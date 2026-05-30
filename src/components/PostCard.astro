@@ -1,0 +1,84 @@
+---
+import { formatDate, isoDate } from "../utils";
+
+interface Props {
+  href: string;
+  title: string;
+  description: string;
+  pubDate: Date;
+  tags?: string[];
+  readingTime?: string;
+}
+const { href, title, description, pubDate, tags = [], readingTime } = Astro.props;
+---
+
+<a class="post-card card" href={href}>
+  <div class="meta">
+    <time datetime={isoDate(pubDate)}>{formatDate(pubDate)}</time>
+    {readingTime && <><span class="sep">/</span><span>{readingTime}</span></>}
+  </div>
+  <h3 class="title">{title}</h3>
+  <p class="desc">{description}</p>
+  {
+    tags.length > 0 && (
+      <div class="tags">
+        {tags.map((t) => (
+          <span class="tag">{t}</span>
+        ))}
+      </div>
+    )
+  }
+  <span class="more">Read <span class="arrow" aria-hidden="true">→</span></span>
+</a>
+
+<style>
+  .post-card {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    padding: 1.5rem;
+  }
+  .meta {
+    font-family: var(--font-mono);
+    font-size: 0.74rem;
+    color: var(--muted);
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+  }
+  .sep {
+    opacity: 0.5;
+  }
+  .title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin: 0.65rem 0 0.4rem;
+    line-height: 1.25;
+  }
+  .desc {
+    color: var(--muted);
+    font-size: 0.95rem;
+    margin: 0;
+  }
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-top: 1rem;
+  }
+  .more {
+    display: inline-flex;
+    gap: 0.4rem;
+    align-items: center;
+    margin-top: 1.1rem;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--accent);
+  }
+  .post-card:hover .arrow {
+    transform: translateX(4px);
+  }
+  .arrow {
+    transition: transform 180ms ease;
+  }
+</style>

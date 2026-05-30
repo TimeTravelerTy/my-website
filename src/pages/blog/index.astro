@@ -1,0 +1,62 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import PostCard from "../../components/PostCard.astro";
+
+const posts = (await getCollection("blog", ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+---
+
+<BaseLayout title="Blog" description="Writing on ML, interpretability, and whatever else I'm thinking about.">
+  <header class="page-head">
+    <p class="eyebrow">Blog</p>
+    <h1>Writing</h1>
+    <p class="sub">
+      Notes and longer pieces, mostly on machine learning and interpretability.
+    </p>
+  </header>
+
+  {
+    posts.length === 0 ? (
+      <p class="empty">No posts yet — check back soon.</p>
+    ) : (
+      <div class="list">
+        {posts.map((post) => (
+          <PostCard
+            href={`/blog/${post.id}`}
+            title={post.data.title}
+            description={post.data.description}
+            pubDate={post.data.pubDate}
+            tags={post.data.tags}
+          />
+        ))}
+      </div>
+    )
+  }
+</BaseLayout>
+
+<style>
+  .page-head {
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 1.25rem;
+    margin-bottom: 2.5rem;
+  }
+  .page-head h1 {
+    font-size: clamp(2rem, 5vw, 2.8rem);
+    font-weight: 600;
+    margin: 0.5rem 0 0;
+  }
+  .sub {
+    color: var(--muted);
+    max-width: 50ch;
+    margin: 1rem 0 0;
+  }
+  .list {
+    display: grid;
+    gap: 1rem;
+  }
+  .empty {
+    color: var(--muted);
+  }
+</style>

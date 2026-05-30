@@ -1,0 +1,84 @@
+---
+import { SITE, SOCIALS } from "../config";
+const year = new Date().getFullYear();
+---
+
+<footer id="contact" class="site-footer">
+  <div class="inner">
+    <div class="col">
+      <p class="eyebrow">Get in touch</p>
+      <ul class="socials">
+        {
+          SOCIALS.map((s) => (
+            <li>
+              <span class="key">{s.label}</span>
+              <a class="link-slide" href={s.href} rel="me noopener">
+                {s.handle}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+    <div class="col end">
+      <p class="mark">{SITE.wordmark}</p>
+      <p class="fine">© {year} {SITE.name}. Built with Astro.</p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    border-top: 1px solid var(--border);
+    margin-top: 5rem;
+  }
+  .inner {
+    max-width: 64rem;
+    margin: 0 auto;
+    padding: 2.5rem 1.5rem 3rem;
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+  .socials {
+    list-style: none;
+    margin: 0.9rem 0 0;
+    padding: 0;
+    display: grid;
+    gap: 0.5rem;
+  }
+  .socials li {
+    display: flex;
+    gap: 0.75rem;
+    align-items: baseline;
+    font-size: 0.9rem;
+  }
+  .key {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--muted);
+    min-width: 4.5rem;
+  }
+  .socials a {
+    color: var(--ink);
+    text-decoration: none;
+  }
+  .col.end {
+    text-align: right;
+  }
+  .mark {
+    font-family: var(--font-mono);
+    color: var(--ink);
+  }
+  .fine {
+    color: var(--muted);
+    font-size: 0.8rem;
+    margin-top: 0.25rem;
+  }
+  @media (max-width: 560px) {
+    .col.end {
+      text-align: left;
+    }
+  }
+</style>
