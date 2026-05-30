@@ -8,8 +8,8 @@ import rehypeKatex from 'rehype-katex';
 
 // https://astro.build/config
 export default defineConfig({
-  // TODO: replace with your real domain once you connect it on Vercel.
-  site: 'https://tyronewhite.dev',
+  // Update this if you later attach a custom domain.
+  site: 'https://my-website-pi-ten-29.vercel.app',
   output: 'static',
   integrations: [mdx(), sitemap()],
   markdown: {

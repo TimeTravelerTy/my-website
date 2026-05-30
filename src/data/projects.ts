@@ -43,6 +43,6 @@ export const PROJECTS: Project[] = [
       "A creative-coding passion project: an interactive simulation of 25,600 coupled chaotic agents based on the logistic map, exploring how locally simple systems produce globally coherent behavior. Inspired by Michael Levin's work on collective intelligence and biological agency, built to make the transition from local chaos to collective order visible and interactive.",
     tags: ["creative coding", "simulation", "complexity"],
     links: [{ label: "Live", href: "https://logisticplatonic.space/" }],
-    year: "2024",
+    year: "2026",
   },
 ];

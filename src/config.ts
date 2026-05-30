@@ -7,8 +7,8 @@ export const SITE = {
   title: "Tyrone White",
   description:
     "Tyrone White: personal site, projects, and a blog on machine learning and interpretability.",
-  // TODO: set to your real domain before deploy (also update astro.config.mjs `site`).
-  url: "https://tyronewhite.dev",
+  // Update this if you later attach a custom domain (also update astro.config.mjs `site`).
+  url: "https://my-website-pi-ten-29.vercel.app",
   email: "whitetyrone14@gmail.com",
 } as const;
 
