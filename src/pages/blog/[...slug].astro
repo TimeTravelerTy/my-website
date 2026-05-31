@@ -20,7 +20,7 @@ const { title, description, pubDate, updatedDate, tags, heroImage } = post.data;
 const minutes = readingTime(post.body ?? "");
 ---
 
-<BaseLayout title={title} description={description}>
+<BaseLayout title={title} description={description} image={heroImage?.src}>
   <article class="post">
     <header class="post-head">
       <a href="/blog" class="back link-slide">← Blog</a>
