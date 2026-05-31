@@ -8,8 +8,7 @@ import rehypeKatex from 'rehype-katex';
 
 // https://astro.build/config
 export default defineConfig({
-  // Update this if you later attach a custom domain.
-  site: 'https://my-website-pi-ten-29.vercel.app',
+  site: 'https://tyronewhite.dev',
   output: 'static',
   integrations: [mdx(), sitemap()],
   markdown: {
