@@ -1,8 +1,10 @@
 ---
 import { getCollection } from "astro:content";
+import { Image } from "astro:assets";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PostCard from "../components/PostCard.astro";
 import ProjectCard from "../components/ProjectCard.astro";
+import portrait from "../assets/portrait.jpg";
 import { SITE } from "../config";
 import { PROJECTS } from "../data/projects";
 import { PUBLICATIONS } from "../data/publications";
@@ -18,15 +20,26 @@ const recent = PUBLICATIONS.slice(0, 3);
 
 <BaseLayout wide>
   <section class="hero">
-    <p class="eyebrow">Institute of Science Tokyo · AI / interpretability</p>
-    <h1 class="name">{SITE.name}</h1>
-    <p class="lede">{INTRO}</p>
-    <div class="cta">
-      <a href="/research" class="btn btn-primary">Research</a>
-      <a href="/projects" class="btn">Projects</a>
-      <a href="/blog" class="btn">Blog</a>
-      <a href={`mailto:${SITE.email}`} class="btn">Email</a>
+    <div class="hero-text">
+      <p class="eyebrow">Institute of Science Tokyo · AI / interpretability</p>
+      <h1 class="name">{SITE.name}</h1>
+      <p class="lede">{INTRO}</p>
+      <div class="cta">
+        <a href="/research" class="btn btn-primary">Research</a>
+        <a href="/projects" class="btn">Projects</a>
+        <a href="/blog" class="btn">Blog</a>
+        <a href={`mailto:${SITE.email}`} class="btn">Email</a>
+      </div>
     </div>
+    <figure class="hero-photo">
+      <Image
+        src={portrait}
+        alt="Tyrone White standing on the bridge to Ukimidō, a temple on Lake Biwa."
+        widths={[320, 480, 640]}
+        sizes="(max-width: 720px) 60vw, 17rem"
+        loading="eager"
+      />
+    </figure>
   </section>
 
   <section class="block">
@@ -116,6 +129,30 @@ const recent = PUBLICATIONS.slice(0, 3);
     padding: 1rem 0 2.5rem;
     border-bottom: 1px solid var(--border);
     margin-bottom: 3.5rem;
+    display: grid;
+    grid-template-columns: 1fr 17rem;
+    gap: 2.5rem;
+    align-items: center;
+  }
+  .hero-photo {
+    margin: 0;
+  }
+  .hero-photo :global(img) {
+    display: block;
+    width: 100%;
+    height: auto;
+    border: 1px solid var(--border);
+    filter: saturate(0.95);
+  }
+  @media (max-width: 720px) {
+    .hero {
+      grid-template-columns: 1fr;
+      gap: 1.75rem;
+    }
+    .hero-photo {
+      max-width: 13rem;
+      order: -1;
+    }
   }
   .name {
     font-size: clamp(2.4rem, 6vw, 3.6rem);

@@ -1,5 +1,7 @@
 ---
+import { Image } from "astro:assets";
 import BaseLayout from "../layouts/BaseLayout.astro";
+import portrait from "../assets/portrait.jpg";
 import { SITE, SOCIALS, YOUTUBE } from "../config";
 import { BIO, EDUCATION, LANGUAGES, HOBBIES } from "../data/profile";
 ---
@@ -62,6 +64,15 @@ import { BIO, EDUCATION, LANGUAGES, HOBBIES } from "../data/profile";
     </div>
 
     <aside class="side">
+      <figure class="portrait">
+        <Image
+          src={portrait}
+          alt="Tyrone White on the bridge to Ukimidō on Lake Biwa."
+          widths={[280, 420]}
+          sizes="14rem"
+          loading="eager"
+        />
+      </figure>
       <p class="eyebrow">Elsewhere</p>
       <ul class="links">
         {
@@ -181,6 +192,21 @@ import { BIO, EDUCATION, LANGUAGES, HOBBIES } from "../data/profile";
     padding-left: 1.5rem;
     position: sticky;
     top: 5rem;
+  }
+  .portrait {
+    margin: 0 0 1.75rem;
+  }
+  .portrait :global(img) {
+    display: block;
+    width: 100%;
+    height: auto;
+    border: 1px solid var(--border);
+    filter: saturate(0.95);
+  }
+  @media (max-width: 720px) {
+    .portrait {
+      max-width: 13rem;
+    }
   }
   .side .links {
     list-style: none;
