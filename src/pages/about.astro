@@ -3,7 +3,7 @@ import { Image } from "astro:assets";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import portrait from "../assets/portrait.jpg";
 import { SITE, SOCIALS, YOUTUBE } from "../config";
-import { BIO, EDUCATION, LANGUAGES, HOBBIES } from "../data/profile";
+import { BIO, EDUCATION, LANGUAGES } from "../data/profile";
 ---
 
 <BaseLayout title="About" description={`About ${SITE.name}.`}>
@@ -56,10 +56,6 @@ import { BIO, EDUCATION, LANGUAGES, HOBBIES } from "../data/profile";
         Outside of that, language learning, creative coding, and the broader question
         of how intelligence shows up across humans, animals, biological systems, and
         machines. Also history.
-      </p>
-      <p class="reading">
-        <span class="reading-label">Currently reading:</span>{" "}
-        {HOBBIES.currentlyReading}
       </p>
     </div>
 
@@ -170,11 +166,6 @@ import { BIO, EDUCATION, LANGUAGES, HOBBIES } from "../data/profile";
     color: var(--muted);
     margin-top: 0.5rem;
   }
-  .reading {
-    margin-top: 1.15rem;
-    color: var(--muted);
-  }
-  .reading-label,
   .thesis-label {
     color: var(--accent);
   }

@@ -10,11 +10,10 @@ export const BIO: string[] = [
 
 // Shown in the "Now" block. Keep it short and current.
 export const NOW = {
-  updated: "May 2026",
+  updated: "September 2026",
   items: [
-    "Researching grammatical generalization in LLMs: how lexical frequency shapes grammatical preferences, and whether models stay robust when minimal pairs use rare words. Manuscript under review for EMNLP 2026.",
-    "Studying for the JLPT N1 (sitting it this summer).",
-    "Reading The Three-Body Problem.",
+    "Researching grammatical generalization in LLMs: how lexical frequency shapes grammatical preferences, and whether models stay robust when minimal pairs use rare words. The FreqBLiMP paper was accepted to the EMNLP 2026 main conference.",
+    "Passed the JLPT N1.",
   ],
 };
 
@@ -88,7 +87,7 @@ export const LANGUAGES = {
     { lang: "English", note: "" },
     { lang: "French", note: "" },
     { lang: "German", note: "" },
-    { lang: "Japanese", note: "JLPT N1 — summer 2026" },
+    { lang: "Japanese", note: "JLPT N1" },
   ],
   learning: ["Spanish", "Mandarin", "Korean", "Kinyarwanda"],
 };
@@ -97,5 +96,4 @@ export const HOBBIES = {
   paragraphs: [
     "Piano and music — I post some playing on my YouTube channel. Outside of that: language learning, creative coding, and the broader question of how intelligence shows up across humans, animals, biological systems, and machines. Also history.",
   ],
-  currentlyReading: "The Three-Body Problem",
 };

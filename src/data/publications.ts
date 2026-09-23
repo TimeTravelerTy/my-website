@@ -12,16 +12,15 @@ export interface Pub {
 
 export const PUBLICATIONS: Pub[] = [
   {
-    // Title kept generic on purpose: this paper is under ARR/EMNLP double-blind
-    // review, so the real title is withheld until acceptance to avoid de-anonymizing
-    // it via search. Swap in the real title once it's accepted.
-    title: "Lexical frequency and grammatical generalization in LLMs",
-    venue: "Under review (ARR 2026 / EMNLP 2026)",
+    title:
+      "FreqBLiMP: Frequency-Controlled Minimal Pairs Reveal Robustness and Fragility of LLMs Under Lexical Rarity",
+    venue: "EMNLP 2026 (Main Conference)",
     date: "2026",
-    status: "Under review",
+    status: "Accepted",
+    authorsNote: "Tyrone White, Yuki Arase",
     description:
-      "Investigates how lexical frequency affects grammatical preferences in LLMs, specifically whether models stay robust when minimal pairs involve rare or uncommon lexical items.",
-    links: [],
+      "Introduces FreqBLiMP, a frequency-controlled extension of BLiMP that tests whether LLMs keep their grammatical preferences when minimal pairs use rare rather than common words. Models stay robust on morphosyntactic phenomena but degrade on phenomena that depend on specific lexical knowledge.",
+    links: [{ label: "arXiv", href: "https://arxiv.org/abs/2609.07153" }],
   },
   {
     title: "Large Language Models Are Robust to Low-Frequency Words in Grammatical Evaluation",
